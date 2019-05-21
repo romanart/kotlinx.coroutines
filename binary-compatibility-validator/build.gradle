@@ -27,7 +27,7 @@ dependencies {
     testArtifacts project(path: ':kotlinx-coroutines-play-services', configuration: 'default')
 
     testArtifacts project(':kotlinx-coroutines-android')
-    testArtifacts project(':kotlinx-coroutines-javafx')
+//    testArtifacts project(':kotlinx-coroutines-javafx')
     testArtifacts project(':kotlinx-coroutines-swing')
 }
 

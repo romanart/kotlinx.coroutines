@@ -90,7 +90,7 @@ allprojects {
 
         def skipSnapshotChecks = rootProject.properties['skip_snapshot_checks'] != null
         if (!skipSnapshotChecks && version != atomicfu_version) {
-            throw new IllegalStateException("Current deploy version is $version, but atomicfu version is not overridden ($atomicfu_version) for $it")
+//            throw new IllegalStateException("Current deploy version is $version, but atomicfu version is not overridden ($atomicfu_version) for $it")
         }
 
         kotlin_version = rootProject.properties['kotlin_snapshot_version']
@@ -112,6 +112,10 @@ allprojects {
     tasks.withType(Test) {
         systemProperty 'stressTest', stressTest
     }
+
+    tasks.withType(JavaCompile) {
+        options.compilerArgs += ['-Xmx2g']
+    }
 }
 
 allprojects {
@@ -125,6 +129,7 @@ allprojects {
         if (projectName == "kotlinx-coroutines-play-services") {
             google()
         }
+        mavenLocal()
         jcenter()
         maven { url "https://kotlin.bintray.com/kotlin-dev" }
         maven { url "https://kotlin.bintray.com/kotlin-eap" }
